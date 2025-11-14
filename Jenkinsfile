@@ -30,7 +30,8 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('STUDENTAPI-SPRINGBOOT') {
-                    bat 'mvn clean package'
+                    // IMPORTANT LINE: Use Jenkins Maven tool
+                    bat """${tool 'MAVEN_HOME'}\\bin\\mvn clean package"""
                 }
             }
         }
@@ -49,7 +50,6 @@ pipeline {
                 '''
             }
         }
-
     }
 
     post {
